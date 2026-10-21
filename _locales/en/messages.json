@@ -128,5 +128,11 @@
         "content": "$1"
       }
     }
+  },
+  "language": {
+    "message": "Language"
+  },
+  "languageAuto": {
+    "message": "Auto (browser language)"
   }
 }

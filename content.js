@@ -19,7 +19,8 @@ const api = globalThis.browser ?? globalThis.chrome;
     .filter((o) => o.value)
     .map((o) => ({ code: o.value, name: o.text.trim() }));
 
-  const { inst, autoContinue } = await api.storage.local.get(["inst", "autoContinue"]);
+  // Both "skip" settings are on unless the user turned them off.
+  const { inst, autoContinue = true } = await api.storage.local.get(["inst", "autoContinue"]);
   await api.storage.local.set({ institutions });
 
   // Save whatever the user picks.

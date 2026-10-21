@@ -5,7 +5,8 @@
 const api = globalThis.browser ?? globalThis.chrome;
 
 (async () => {
-  const { inst, feideAutoContinue } = await api.storage.local.get(["inst", "feideAutoContinue"]);
+  // Both "skip" settings are on unless the user turned them off.
+  const { inst, feideAutoContinue = true } = await api.storage.local.get(["inst", "feideAutoContinue"]);
   const org = inst && FEIDE_ORGS[inst];
   if (!org) return;
 

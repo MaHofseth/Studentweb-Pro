@@ -8,15 +8,22 @@ const method = document.getElementById("method");
 const methodNote = document.getElementById("methodNote");
 const status = document.getElementById("status");
 
-// Texts come from _locales/<lang>/messages.json; the browser picks the
-// language from its own settings (falls back to English).
-const t = (key, subs) => api.i18n.getMessage(key, subs);
-const norwegian = t("lang") === "nb";
-const METHOD_LABELS = { feide: t("methodFeide"), fnr: t("methodFnr"), idporten: t("methodIdporten") };
+const languageSel = document.getElementById("language");
 
-document.documentElement.lang = t("lang");
-for (const el of document.querySelectorAll("[data-i18n]")) el.textContent = t(el.dataset.i18n);
-for (const el of document.querySelectorAll("[data-i18n-title]")) el.title = t(el.dataset.i18nTitle);
+// Texts come from _locales/<lang>/messages.json, in the language chosen in
+// the settings (i18n.js); set by applyTexts().
+let t = (key, subs) => api.i18n.getMessage(key, subs);
+let norwegian = false;
+let METHOD_LABELS = {};
+
+async function applyTexts() {
+  t = await loadTranslator();
+  norwegian = t("lang") === "nb";
+  METHOD_LABELS = { feide: t("methodFeide"), fnr: t("methodFnr"), idporten: t("methodIdporten") };
+  document.documentElement.lang = t("lang");
+  for (const el of document.querySelectorAll("[data-i18n]")) el.textContent = t(el.dataset.i18n);
+  for (const el of document.querySelectorAll("[data-i18n-title]")) el.title = t(el.dataset.i18nTitle);
+}
 
 // Built-in names in the popup's language; the cached list from StudentWeb
 // is in whatever language that page was shown in.
@@ -97,7 +104,8 @@ async function renderAverage() {
 }
 
 async function render() {
-  const { inst, autoContinue, feideAutoContinue, institutions = DEFAULT_INSTITUTIONS } =
+  // Both "skip" settings are on unless the user turned them off.
+  const { inst, autoContinue = true, feideAutoContinue = true, institutions = DEFAULT_INSTITUTIONS } =
     await api.storage.local.get(["inst", "autoContinue", "feideAutoContinue", "institutions"]);
 
   instSel.replaceChildren(new Option(t("none"), ""));
@@ -108,8 +116,8 @@ async function render() {
   if (inst && !institutions.some((i) => i.code === inst)) instSel.add(new Option(inst, inst));
   instSel.value = inst || "";
 
-  auto.checked = !!autoContinue;
-  feideAuto.checked = !!feideAutoContinue;
+  auto.checked = autoContinue;
+  feideAuto.checked = feideAutoContinue;
   await renderMethods();
   await renderAverage();
 }
@@ -174,4 +182,16 @@ document.getElementById("average").addEventListener("click", async () => {
   window.close();
 });
 
-render();
+languageSel.addEventListener("change", async () => {
+  await api.storage.local.set({ language: languageSel.value });
+  await applyTexts();
+  await render();
+  flash(t("saved"));
+});
+
+(async () => {
+  const { language = "auto" } = await api.storage.local.get("language");
+  languageSel.value = LANGUAGES.includes(language) ? language : "auto";
+  await applyTexts();
+  await render();
+})();

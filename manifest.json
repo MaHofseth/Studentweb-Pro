@@ -36,13 +36,19 @@
         "https://studentweb.uio.no/studentweb/login.jsf*",
         "https://studentweb.uio.no/studentweb/velgInstitusjon.jsf*"
       ],
-      "js": ["results.js"],
+      "js": ["i18n.js", "results.js"],
       "run_at": "document_idle"
     },
     {
       "matches": ["https://idp.feide.no/simplesaml/module.php/feide/selectorg*"],
       "js": ["institutions.js", "feide.js"],
       "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["_locales/en/messages.json", "_locales/nb/messages.json"],
+      "matches": ["https://fsweb.no/*", "https://studentweb.uio.no/*"]
     }
   ],
   "options_ui": {

@@ -128,5 +128,11 @@
         "content": "$1"
       }
     }
+  },
+  "language": {
+    "message": "Språk"
+  },
+  "languageAuto": {
+    "message": "Automatisk (språket i nettlesaren)"
   }
 }

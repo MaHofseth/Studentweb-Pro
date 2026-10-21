@@ -1,10 +1,11 @@
 // Runs on StudentWeb pages (fsweb.no and studentweb.uio.no).
 // - On resultater.jsf: shows the credit-weighted grade average above the table.
-// - Elsewhere: if the popup's "Calculate grade average" button was just used,
+// - Elsewhere: if the popup's "Update" button was just used,
 //   continue to resultater.jsf once logged in.
 // Firefox provides `browser`, Chrome provides `chrome`.
 const api = globalThis.browser ?? globalThis.chrome;
-const t = (key, subs) => api.i18n.getMessage(key, subs);
+// Texts in the language chosen in the popup (i18n.js, loaded first).
+let t = (key, subs) => api.i18n.getMessage(key, subs);
 
 const PENDING_MAX_AGE = 10 * 60_000;
 const GRADE_POINTS = { A: 5, B: 4, C: 3, D: 2, E: 1 };
@@ -50,7 +51,14 @@ const LETTERS = ["F", "E", "D", "C", "B", "A"];
     saveForPopup(stats);
   };
 
+  t = await loadTranslator();
   render();
+  // Switch language straight away if it's changed in the popup.
+  api.storage.onChanged.addListener(async (changes, area) => {
+    if (area !== "local" || !changes.language) return;
+    t = await loadTranslator();
+    render();
+  });
   // StudentWeb re-renders the table when the filter ("Bare gyldige" etc.)
   // changes. Our own box is inside the form too, so ignore changes to it.
   let pending = 0;

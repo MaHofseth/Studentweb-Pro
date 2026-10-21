@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <style>
-    body { font: 14px system-ui, sans-serif; margin: 12px; width: 450px; }
+    body { font: 14px system-ui, sans-serif; margin: 12px; width: 350px; }
     .title-row { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid #ddd; }
     .title-row img { border-radius: 5px; }
     .title-row h1 { margin: 0; font-size: 16px; font-weight: 600; }
@@ -15,6 +15,8 @@
     select { flex: 1; min-width: 0; padding: 4px; }
     .options { margin: 0 0 14px; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; background: #f8f8f8; }
     .options h2 { font-size: 14px; margin: 0 0 8px; }
+    .language-field { margin-bottom: 12px; }
+    .language-field select { width: 100%; }
     .check { display: flex; gap: 8px; align-items: flex-start; }
     .check + .check { margin-top: 10px; }
     .check input { margin-top: 3px; }
@@ -37,6 +39,15 @@
   </header>
 
   <div class="options" id="settings" hidden>
+    <div class="field language-field">
+      <label for="language" data-i18n="language"></label>
+      <select id="language">
+        <option value="auto" data-i18n="languageAuto"></option>
+        <option value="en" lang="en">English</option>
+        <option value="nb" lang="nb">Norsk</option>
+      </select>
+    </div>
+
     <h2 data-i18n="skipHeading"></h2>
     <div class="check">
       <input type="checkbox" id="auto">
@@ -77,6 +88,7 @@
 
   <span id="status" role="status"></span>
 
+  <script src="i18n.js"></script>
   <script src="institutions.js"></script>
   <script src="options.js"></script>
 </body>
