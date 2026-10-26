@@ -1,5 +1,8 @@
 :warning: This plugin is almost entirely vibecoded. Take its results with a grain of salt.
 
+<img width="475" height="330" alt="Image displaying user interface" src="https://github.com/user-attachments/assets/27d84078-26a7-4a48-a33b-c45fea00505b" />
+
+
 # Studentweb Pro
 Firefox and Chrome extension for adding quality of life features to Studentweb [StudentWeb](https://fsweb.no/studentweb/) and FEIDE. 
 
@@ -10,7 +13,6 @@ Firefox and Chrome extension for adding quality of life features to Studentweb [
 - English or Norwegian, following the browser's language.
 
 Settings are set in the toolbar icon.
-
 
 ## How to install the plugin locally
 
