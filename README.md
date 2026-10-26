@@ -1,6 +1,6 @@
 :warning: This plugin is almost entirely vibecoded. Take its results with a grain of salt.
 
-<img width="475" height="330" alt="Image displaying user interface" src="https://github.com/user-attachments/assets/27d84078-26a7-4a48-a33b-c45fea00505b" />
+<img width="2800" height="1360" alt="image" src="https://github.com/user-attachments/assets/eb18ec59-ec5f-4617-a4fe-ea8a84ef504d" />
 
 
 # Studentweb Pro
