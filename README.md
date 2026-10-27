@@ -29,3 +29,6 @@ Settings are set in the toolbar icon.
 
 ## Translations
 Texts live in `_locales/<lang>/messages.json`. `nb` is the Norwegian source; `no` (Chrome's code for Norwegian) and `nn` (nynorsk users get bokmål) are copies of it, so update all three together.
+
+## Demo
+[YouTube](https://youtu.be/kXK0FXVg-hU)
