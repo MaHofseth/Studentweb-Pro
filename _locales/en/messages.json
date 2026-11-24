@@ -134,5 +134,17 @@
   },
   "languageAuto": {
     "message": "Auto (browser language)"
+  },
+  "reset": {
+    "message": "Reset to factory settings"
+  },
+  "resetHint": {
+    "message": "Clears your institution, login method, settings, language and saved averages."
+  },
+  "resetConfirm": {
+    "message": "Click again to reset"
+  },
+  "resetDone": {
+    "message": "Factory settings restored."
   }
 }

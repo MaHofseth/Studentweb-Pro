@@ -189,9 +189,34 @@ languageSel.addEventListener("change", async () => {
   flash(t("saved"));
 });
 
-(async () => {
+async function init() {
   const { language = "auto" } = await api.storage.local.get("language");
   languageSel.value = LANGUAGES.includes(language) ? language : "auto";
   await applyTexts();
   await render();
-})();
+}
+
+// Factory reset: clears everything the extension has stored (institution,
+// login method, settings, language, saved averages and cached page data).
+// The first click asks for confirmation in the button itself, since popups
+// can't show confirm() dialogs in Firefox.
+const resetButton = document.getElementById("reset");
+let resetTimer = 0;
+resetButton.addEventListener("click", async () => {
+  if (!resetButton.classList.contains("confirming")) {
+    resetButton.classList.add("confirming");
+    resetButton.textContent = t("resetConfirm");
+    resetTimer = setTimeout(() => {
+      resetButton.classList.remove("confirming");
+      resetButton.textContent = t("reset");
+    }, 4000);
+    return;
+  }
+  clearTimeout(resetTimer);
+  resetButton.classList.remove("confirming");
+  await api.storage.local.clear();
+  await init();
+  flash(t("resetDone"));
+});
+
+init();

@@ -17,6 +17,9 @@
     .options h2 { font-size: 14px; margin: 0 0 8px; }
     .language-field { margin-bottom: 12px; }
     .language-field select { width: 100%; }
+    .reset-row { margin-top: 14px; padding-top: 12px; border-top: 1px solid #ddd; }
+    button.danger { color: #b3261e; }
+    button.danger.confirming { background: #b3261e; border-color: #b3261e; color: #fff; }
     .check { display: flex; gap: 8px; align-items: flex-start; }
     .check + .check { margin-top: 10px; }
     .check input { margin-top: 3px; }
@@ -56,6 +59,11 @@
     <div class="check">
       <input type="checkbox" id="feideAuto">
       <label for="feideAuto" data-i18n="feideAuto"></label>
+    </div>
+
+    <div class="reset-row">
+      <button id="reset" class="danger" data-i18n="reset"></button>
+      <p class="hint" data-i18n="resetHint"></p>
     </div>
   </div>
 

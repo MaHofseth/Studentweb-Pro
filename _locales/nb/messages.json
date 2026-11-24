@@ -134,5 +134,17 @@
   },
   "languageAuto": {
     "message": "Automatisk (nettleserens språk)"
+  },
+  "reset": {
+    "message": "Tilbakestill til fabrikkinnstillinger"
+  },
+  "resetHint": {
+    "message": "Fjerner institusjon, innloggingsmetode, innstillinger, språk og lagrede snitt."
+  },
+  "resetConfirm": {
+    "message": "Klikk igjen for å tilbakestille"
+  },
+  "resetDone": {
+    "message": "Tilbakestilt til fabrikkinnstillinger"
   }
 }
