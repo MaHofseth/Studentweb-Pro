@@ -135,6 +135,18 @@
   "languageAuto": {
     "message": "Auto (browser language)"
   },
+  "theme": {
+    "message": "Theme"
+  },
+  "themeAuto": {
+    "message": "Auto (system setting)"
+  },
+  "themeLight": {
+    "message": "Light"
+  },
+  "themeDark": {
+    "message": "Dark"
+  },
   "reset": {
     "message": "Reset to factory settings"
   },

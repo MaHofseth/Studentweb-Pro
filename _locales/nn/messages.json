@@ -135,6 +135,18 @@
   "languageAuto": {
     "message": "Automatisk (språket i nettlesaren)"
   },
+  "theme": {
+    "message": "Tema"
+  },
+  "themeAuto": {
+    "message": "Automatisk (systeminnstilling)"
+  },
+  "themeLight": {
+    "message": "Lyst"
+  },
+  "themeDark": {
+    "message": "Mørkt"
+  },
   "reset": {
     "message": "Tilbakestill til fabrikkinnstillingar"
   },

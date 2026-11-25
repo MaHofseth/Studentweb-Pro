@@ -11,6 +11,7 @@ Firefox and Chrome extension for adding quality of life features to Studentweb [
 - Calculates average grade based on information in [StudentWebs resultater page] (https://fsweb.no/studentweb/resultater.jsf) 
 - Runs in Firefox and Chrome.
 - English or Norwegian, following the browser's language.
+- Light or dark popup (Auto, Light or Dark), following the system by default.
 
 Settings are set in the toolbar icon.
 

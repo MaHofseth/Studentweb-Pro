@@ -3,33 +3,49 @@
 <head>
   <meta charset="utf-8">
   <style>
+    /* Theme: "auto" follows the system; the Theme setting sets data-theme on
+       <html> to force light or dark. color-scheme also themes the native
+       controls, and light-dark() picks each custom color. */
+    :root { color-scheme: light dark; background: Canvas; color: CanvasText;
+      --border: light-dark(#ddd, rgb(255 255 255 / 0.15));
+      --panel: light-dark(#f8f8f8, rgb(255 255 255 / 0.05));
+      --muted: light-dark(#777, #a0a0a0);
+      --icon: light-dark(#666, #aaa);
+      --icon-hover-bg: light-dark(#eee, rgb(255 255 255 / 0.1));
+      --icon-hover: light-dark(#222, #eee);
+      --danger: light-dark(#b3261e, #f2b8b5);
+      --ok: light-dark(#2a7, #5c9);
+      --warn: light-dark(#b5651d, #e0a060);
+    }
+    :root[data-theme="light"] { color-scheme: light; }
+    :root[data-theme="dark"] { color-scheme: dark; }
     body { font: 14px system-ui, sans-serif; margin: 12px; width: 350px; }
-    .title-row { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid #ddd; }
+    .title-row { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
     .title-row img { border-radius: 5px; }
     .title-row h1 { margin: 0; font-size: 16px; font-weight: 600; }
-    .icon-button { margin-left: auto; display: flex; padding: 4px; border: 0; border-radius: 6px; background: none; color: #666; cursor: pointer; }
-    .icon-button:hover, .icon-button[aria-expanded="true"] { background: #eee; color: #222; }
+    .icon-button { margin-left: auto; display: flex; padding: 4px; border: 0; border-radius: 6px; background: none; color: var(--icon); cursor: pointer; }
+    .icon-button:hover, .icon-button[aria-expanded="true"] { background: var(--icon-hover-bg); color: var(--icon-hover); }
     .field + .field { margin-top: 14px; }
     .field > label { display: block; margin-bottom: 4px; font-weight: 600; }
     .select-row { display: flex; gap: 6px; }
     select { flex: 1; min-width: 0; padding: 4px; }
-    .options { margin: 0 0 14px; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; background: #f8f8f8; }
+    .options { margin: 0 0 14px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel); }
     .options h2 { font-size: 14px; margin: 0 0 8px; }
-    .language-field { margin-bottom: 12px; }
-    .language-field select { width: 100%; }
-    .reset-row { margin-top: 14px; padding-top: 12px; border-top: 1px solid #ddd; }
-    button.danger { color: #b3261e; }
+    .setting-field { margin-bottom: 12px; }
+    .setting-field select { width: 100%; }
+    .reset-row { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+    button.danger { color: var(--danger); }
     button.danger.confirming { background: #b3261e; border-color: #b3261e; color: #fff; }
     .check { display: flex; gap: 8px; align-items: flex-start; }
     .check + .check { margin-top: 10px; }
     .check input { margin-top: 3px; }
-    #status { display: block; min-height: 1.2em; margin-top: 10px; color: #2a7; }
-    .hint { color: #777; font-size: 12px; margin: 6px 0 0; }
-    #methodNote { color: #b5651d; }
+    #status { display: block; min-height: 1.2em; margin-top: 10px; color: var(--ok); }
+    .hint { color: var(--muted); font-size: 12px; margin: 6px 0 0; }
+    #methodNote { color: var(--warn); }
     .field-title { display: block; margin-bottom: 4px; font-weight: 600; }
     .average-row { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
     .average-value { font-size: 20px; font-weight: 600; }
-    .average-value.empty { font-size: 13px; font-weight: normal; color: #777; }
+    .average-value.empty { font-size: 13px; font-weight: normal; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -42,12 +58,21 @@
   </header>
 
   <div class="options" id="settings" hidden>
-    <div class="field language-field">
+    <div class="field setting-field">
       <label for="language" data-i18n="language"></label>
       <select id="language">
         <option value="auto" data-i18n="languageAuto"></option>
         <option value="en" lang="en">English</option>
         <option value="nb" lang="nb">Norsk</option>
+      </select>
+    </div>
+
+    <div class="field setting-field">
+      <label for="theme" data-i18n="theme"></label>
+      <select id="theme">
+        <option value="auto" data-i18n="themeAuto"></option>
+        <option value="light" data-i18n="themeLight"></option>
+        <option value="dark" data-i18n="themeDark"></option>
       </select>
     </div>
 

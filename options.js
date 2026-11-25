@@ -9,6 +9,17 @@ const methodNote = document.getElementById("methodNote");
 const status = document.getElementById("status");
 
 const languageSel = document.getElementById("language");
+const themeSel = document.getElementById("theme");
+
+// "auto" follows the system's light/dark setting; "light" and "dark" force it
+// through data-theme on <html> (see the CSS in options.html).
+const THEMES = ["auto", "light", "dark"];
+function applyTheme(theme) {
+  if (!THEMES.includes(theme)) theme = "auto";
+  themeSel.value = theme;
+  if (theme === "auto") delete document.documentElement.dataset.theme;
+  else document.documentElement.dataset.theme = theme;
+}
 
 // Texts come from _locales/<lang>/messages.json, in the language chosen in
 // the settings (i18n.js); set by applyTexts().
@@ -189,8 +200,15 @@ languageSel.addEventListener("change", async () => {
   flash(t("saved"));
 });
 
+themeSel.addEventListener("change", async () => {
+  applyTheme(themeSel.value);
+  await api.storage.local.set({ theme: themeSel.value });
+  flash(t("saved"));
+});
+
 async function init() {
-  const { language = "auto" } = await api.storage.local.get("language");
+  const { language = "auto", theme = "auto" } = await api.storage.local.get(["language", "theme"]);
+  applyTheme(theme);
   languageSel.value = LANGUAGES.includes(language) ? language : "auto";
   await applyTexts();
   await render();
