@@ -1,4 +1,4 @@
-:warning: This plugin is almost entirely vibecoded. Take its results with a grain of salt.
+:warning: This plugin is almost entirely vibecoded. Take its results with a grain of salt as it is not extensively tested.
 
 <img width="2800" height="1360" alt="image" src="https://github.com/user-attachments/assets/eb18ec59-ec5f-4617-a4fe-ea8a84ef504d" />
 
